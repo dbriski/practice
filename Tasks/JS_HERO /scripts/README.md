@@ -134,3 +134,20 @@ Example: unequal(1, 2, 3) should return true and unequal(1, 1, 2) should return 
 Write a function isThreeDigit that checks if a number is greater than or equal to 100 and less than 1000.
 Example: isThreeDigit(500) should return true and isThreeDigit(50) should return false.
 
+### if
+Write a function equals that checks two values for strict equality. 
+If the two values are equal, the string 'EQUAL' should be returned. If they are unequal, you should get 'UNEQUAL'.
+Example: equals(1, 1) should return 'EQUAL' and equals(1, 2) should return 'UNEQUAL'.
+
+### Two returns
+Write a function repdigit that determines whether a two-digit decimal is a repdigit or not. 
+If the decimal is a repdigit, 'Repdigit!' should be returned, otherwise 'No Repdigit!'.
+Example: repdigit(22) should return 'Repdigit!' and repdigit(23) should return 'No Repdigit!'.
+
+### if...else
+Write a function addWithSurcharge that adds two amounts with surcharge. 
+For each amount less than or equal to 10, the surcharge is 1. 
+For each amount greater than 10, the surcharge is 2.
+Example: addWithSurcharge(5, 15) should return 23.
+
+

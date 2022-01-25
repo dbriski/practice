@@ -200,3 +200,62 @@ function isThreeDigit(num) {
   return num >= 100 && num < 1000;
 }
 isThreeDigit(199);
+
+// if
+//My solution
+function equals(a, b) {
+  if (a === b) {
+    return 'EQUAL'
+  } else {
+    return 'UNEQUAL'
+  }
+}
+//Their solution
+function equals(a, b) {
+  let result = 'UNEQUAL';
+  if (a === b) {
+    result = 'EQUAL';
+  }
+  return result;
+}
+
+// Two returns
+function repdigit(n) {
+  let ones = n % 10;
+  let tens = Math.floor(n / 10);
+  if (ones === tens) {
+    return 'Repdigit!';
+  }
+  return 'No Repdigit!';
+}
+
+// if..else
+function addWithSurcharge(a, b) {
+  let surcharge = 0;
+  if (a <= 10) {
+    surcharge += 1;
+  } else {
+    surcharge += 2; 
+  }
+
+  if (b <= 10) {
+    surcharge += 1;
+  } else {
+    surcharge += 2; 
+  } 
+  return a + b + surcharge;
+}
+
+// forEach example
+// function addWithSurcharge(a, b) {
+//   const numbers = [a, b];
+//   let total = 0;
+//   numbers.forEach(n => {
+//     if (n <= 10){
+//       total += 1 + n;
+//     } else {
+//       total += 2 + n;
+//     }
+//   })
+//   return total;
+// }
