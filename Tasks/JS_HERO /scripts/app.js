@@ -159,3 +159,44 @@ function nor(v1, v2) {
   return !values;
 }
 nor(false, false);
+
+// XOR - Exclusive or
+//Conjunctive
+function xor(val1, val2) {
+  return (val1 || val2) && (!val1 || !val2);
+}
+// Disjunctive
+function xor(val1, val2) {
+  return !val1 && val2 || val1 && !val2;
+}
+
+// Strict equality
+function equals(a, b) {
+  return a === b;
+}
+equals(1,1);
+
+// Three identical values
+function equals(a, b, c) {
+  return a === b && a === c;
+}
+equals(1, 2, 1);
+
+// Even numbers
+function isEven(a) {
+  const result = a % 2;
+  return result === 0;
+}
+isEven(3);
+
+// Strict inequality
+function unequal(a, b, c) {
+  return a !== b && a !== c && b !== c;
+}
+unequal(1, 2, 3);
+
+// Compare numbers
+function isThreeDigit(num) {
+  return num >= 100 && num < 1000;
+}
+isThreeDigit(199);

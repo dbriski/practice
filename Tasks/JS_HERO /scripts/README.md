@@ -104,3 +104,33 @@ If both values are false, the result should be true.
 In the other cases the return should be false.
 I.e.: The call nor(false, false) should return true. 
 The calls nor(true, false), nor(false, true) and nor(true, true) should return false.
+
+### XOR
+Write a function xor that takes two Boolean values. If both values are different, the result should be true. 
+If both values are the same, the result should be false.
+I.e.: The calls xor(true, false) and xor(false, true) should return true. 
+The calls xor(true, true) and xor(false, false) should return false.
+
+### Strict equality
+Write a function equals that checks two values for strict equality.
+Example: equals(1, 1) should return true and equals(1, 2) should return false.
+
+### Three identical values
+Write a function equals that checks 3 values for strict equality. 
+The function should only return true if all 3 values are equal.
+Example: equals(1, 1, 1) should return true and equals(1, 2, 1) should return false.
+
+### Even numbers
+Write a function isEven that checks if a passed number is even. 
+If the given number is even, true should be returned, otherwise false.
+Example: isEven(2) should return true and isEven(3) should return false.
+
+### Strict inequality
+Write a function unequal that checks 3 values for strict inequality. 
+The function should return true if all three parameters are strict unequal. Otherwise false.
+Example: unequal(1, 2, 3) should return true and unequal(1, 1, 2) should return false.
+
+### Compare numbers
+Write a function isThreeDigit that checks if a number is greater than or equal to 100 and less than 1000.
+Example: isThreeDigit(500) should return true and isThreeDigit(50) should return false.
+
