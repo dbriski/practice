@@ -4,7 +4,7 @@ const userInputs = document.querySelectorAll('input');
 
 const movies = [];
 
-const renderNewMovies = () => {
+const renderMovies = (filter = '') => {
   const movieList = document.getElementById('movie-list');
 
   if (movies.length === 0) {
@@ -13,20 +13,31 @@ const renderNewMovies = () => {
   } else {
     movieList.classList.add('visible');
   }
+  movieList.innerHTML = '';
 
-  movies.forEach((movie) => {
+  const filteredMovies = !filter
+    ? movies
+    : movies.filter((movie) => movie.info.title.includes(filter));
+
+  filteredMovies.forEach((movie) => {
     const movieItem = document.createElement('li');
     // movieItem.innerHTML = `
     // <div class="list-item">
     //   <h3>${movie.info.title}</h3>
     // </div>
     // `;
-    let text = movie.info.title + ' - ';
-    for (const key in movie) {
-      if (key !== movie.info.title) {
-        text = movie.info.title + ' - ' + key;
-      } 
+    const {info, ...otherProps} = movie;
+    console.log(otherProps);
+    // const {title: movieTitle} = info;
+    let {getFormattedTitle} = movie;
+    // getFormattedTitle = getFormattedTitle.bind(movie);
+    let text = getFormattedTitle.apply(movie) + ' - ';
+    for (const key in info) {
+      if (key !== 'title' && key !== '_title') {
+        text = text + `${key}: ${info[key]}`;
+      }
     }
+    movieItem.textContent = text;
     movieList.append(movieItem);
   });
 };
@@ -36,26 +47,44 @@ const addMovieHandler = () => {
   const extraNameValue = userInputs[1].value;
   const extraValue = userInputs[2].value;
 
-  if (
-    title.trim === '' ||
-    extraNameValue.trim === '' ||
-    extraValue === ''
-  ) {
+  if (extraNameValue.trim === '' || extraValue === '') {
     return;
   }
 
   const movieObj = {
     info: {
-      title,
-      [extraNameValue]: extraValue,
+      set title(val) {
+        if (val.trim === '' ) {
+          this._title = 'DEFAULT';
+          return;
+        }
+        this._title = val;
+      },
+      get title() {
+        return this._title;
+      },
+      [extraNameValue]: extraValue
     },
     id: Math.random(),
+    getFormattedTitle() {
+      console.log(this)
+      return this.info.title.toUpperCase();
+    }
   };
+
+  movieObj.info.title = title;
+  console.log(movieObj.info.title);
 
   movies.push(movieObj);
   console.log(movies);
-  renderNewMovies();
+  renderMovies();
+};
+
+const searchMovieHandler = () => {
+  const filterValue = userInputs[3].value;
+  renderMovies(filterValue);
 };
 
 addMovieBtn.addEventListener('click', addMovieHandler);
-// searchMovieBtn.addEventListener('click');
+searchMovieBtn.addEventListener('click', searchMovieHandler);
+
