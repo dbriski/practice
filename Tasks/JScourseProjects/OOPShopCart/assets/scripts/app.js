@@ -12,40 +12,107 @@ class Product {
   }
 }
 
-class ShoppingCart {
-  items = [];
+class ElementAttribute {
+  constructor(attrName, attrValue) {
+    this.name = attrName;
+    this.value = attrValue;
+  }
+}
 
-  addProduct(product) {
-    this.items.push(product);
-    this.totalOutput.innerHTML= `<h2>Total: \$${1}</h2>`
+class Component {
+  constructor(renderHookId, shouldRender = true) {
+    this.hookId = renderHookId;
+    if (shouldRender) {
+      this.render();
+    }
   }
 
+  render() {}
+
+  createRootElement(tag, cssClasses, attributes) {
+    const rootElement = document.createElement(tag);
+    if (cssClasses) {
+      rootElement.className = cssClasses;
+    }
+    if (attributes && attributes.length > 0) {
+      for (const attr of attributes) {
+        rootElement.setAttribute(attr.name, attr.value);
+      }
+    }
+    document.getElementById(this.hookId).append(rootElement);
+    return rootElement;
+  }
+}
+
+class ShoppingCart extends Component {
+  items = [];
+
+  set cartItems(value) {
+    this.items = value;
+    this.totalOutput.innerHTML = `<h2>Total: \$${this.totalAmount.toFixed(
+      2
+    )}</h2>`;
+  }
+
+  get totalAmount() {
+    const sum = this.items.reduce(
+      (prevVal, curItem) => prevVal + curItem.price,
+      0
+    );
+    return sum;
+  }
+
+  constructor(renderHookId) {
+    super(renderHookId, false);
+    // 3. using an arrow function on addProduct as a property inside of constructor, render() is called after
+    this.orderProducts = () => {  
+      console.log('Ordering...');
+      console.log(this.items);
+    };
+    this.render();
+  }
+
+  addProduct(product) {
+    const updatedItems = [...this.items];
+    updatedItems.push(product);
+    this.cartItems = updatedItems;
+  }
+
+  // used with .bind and arrow function binding (1. and 2. option)
+  // orderProducts() {
+  //   console.log('Ordering...');
+  //   console.log(this.items);
+  // };
+
   render() {
-    const cartEl = document.createElement('section');
+    const cartEl = this.createRootElement('section', 'cart');
     cartEl.innerHTML = `
       <h2>Total: \$${0}</h2>
       <button>Order Now!</button>
     `;
-    cartEl.className = 'cart';
+    const orderButton = cartEl.querySelector('button');
+    // orderButton.addEventListener('click', this.orderProducts.bind(this)); --> 1. using bind binding, without adding arrow function to addProduct into constructor
+    // orderButton.addEventListener('click', () => this.orderProducts()); --> 2. using arrow function binding, without adding function to addProduct into constructor
+    orderButton.addEventListener('click', this.orderProducts);  // 3. called normally, with adding arrow function to addProduct into constructor
     this.totalOutput = cartEl.querySelector('h2'); // properties can be added everywhere inside of a class
-    return cartEl;
   }
 }
 
-class ProductItem {
-  constructor (product) {
+class ProductItem extends Component {
+  constructor(product, renderHookId) {
+    super(renderHookId, false);
     this.product = product;
+    this.render();
   }
-  
+
   addToCart() {
     App.addProductToCart(this.product);
-  };
+  }
 
-// logic for product element creation
+  // logic for product element creation
   render() {
-    const prodEl = document.createElement('li');
-      prodEl.className = 'product-item';
-      prodEl.innerHTML = `
+    const prodEl = this.createRootElement('li', 'product-item');
+    prodEl.innerHTML = `
       <div>
         <img src="${this.product.imageUrl}" alt="${this.product.title}">
         <div class="product-item__content">
@@ -57,60 +124,70 @@ class ProductItem {
       </div>
     `;
     const addCartItem = prodEl.querySelector('button');
-    addCartItem.addEventListener('click', this.addToCart.bind(this)); // without bind(this), this refers to button element => .bind(this) refers to product obbject
-    return prodEl;
+    addCartItem.addEventListener('click', this.addToCart.bind(this)); // without bind(this), this refers to button element => .bind(this) refers to product object
   }
 }
 
-class ProductList {
-  products = [
-    new Product(
-      'Up Pillow',
-      'https://cdn-ssl.s7.disneystore.com/is/image/DisneyShopping/6504047395760',
-      'A soft pillow from Up Disney!',
-      19.99
-    ),
-    new Product(
-      'A Carpet',
-      'https://m.media-amazon.com/images/I/61i5XSPkngL._SL1080_.jpg',
-      'A cool carpet!',
-      59.99
-    ),
-  ];
+class ProductList extends Component {
+  #products = [];
 
-  constructor() {}
+  constructor(renderHookId) {
+    super(renderHookId, false);
+    this.render();
+    this.fetchProducts();
+  }
 
-// logic for accepting product element and appending to HTML element
-  render() {
-    const prodList = document.createElement('ul');
-    prodList.className = 'product-list';
-    for (const prod of this.products) {
-      const productItem = new ProductItem(prod); // accepts object created based on Product class and stored in products array
-      const prodEl = productItem.render();
-      prodList.append(prodEl);
+  fetchProducts() {
+    this.#products = [
+      new Product(
+        'Up Pillow',
+        'https://cdn-ssl.s7.disneystore.com/is/image/DisneyShopping/6504047395760',
+        'A soft pillow from Up Disney!',
+        19.99
+      ),
+      new Product(
+        'A Carpet',
+        'https://m.media-amazon.com/images/I/61i5XSPkngL._SL1080_.jpg',
+        'A cool carpet!',
+        59.99
+      ),
+    ]
+    this.renderProducts();
+  }
+
+  renderProducts() {
+    for (const prod of this.#products) {
+      new ProductItem(prod, 'prod-list'); // accepts object created based on Product class and stored in products array
     }
-    return prodList;
+  }
+
+  // logic for accepting product element and appending to HTML element
+  render() {
+    this.createRootElement('ul', 'product-list', [
+      new ElementAttribute('id', 'prod-list'),
+    ]);
+    if (this.#products && this.#products.length > 0) {
+      this.renderProducts();
+    }
   }
 }
 
 class Shop {
+  constructor() {
+    this.render();
+  }
 
   render() {
-    const renderHook = document.getElementById('app');
-    this.cart = new ShoppingCart();
-    const cartEl = this.cart.render();
-    const productList = new ProductList();
-    const prodListEl = productList.render();
-
-    renderHook.append(cartEl);
-    renderHook.append(prodListEl);
+    this.cart = new ShoppingCart('app');
+    new ProductList('app');
   }
 }
-  
+
 class App {
+  static cart;
+  
   static init() {
     const shop = new Shop();
-    shop.render();
     this.cart = shop.cart;
   }
 
