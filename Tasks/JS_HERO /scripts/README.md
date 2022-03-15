@@ -150,4 +150,64 @@ For each amount less than or equal to 10, the surcharge is 1.
 For each amount greater than 10, the surcharge is 2.
 Example: addWithSurcharge(5, 15) should return 23.
 
+### else if
+Write a function addWithSurcharge that adds two amounts with surcharge. 
+For each amount less than or equal to 10, the surcharge is 1. 
+For each amount greater than 10 and less than or equal to 20, the surcharge is 2. 
+For each amount greater than 20, the surcharge is 3.
+Example: addWithSurcharge(10, 30) should return 44
 
+### Arrays
+Write a function toArray that takes 2 values and returns these values in an array.
+Example: toArray(5, 9) should return the array [5, 9].
+
+### Get array elements
+Write a function getFirstElement that takes an array and returns the first element of the array.
+Example: getFirstElement([1, 2]) should return 1.
+
+### Set array elements
+Write a function setFirstElement that takes an array and an arbitrary variable. 
+The variable should be inserted as the first element in the array. 
+The array should be returned.
+Example: setFirstElement([1, 2], 3) should return [3, 2].
+
+### Array: length
+Write a function getLastElement that takes an array and returns the last element of the array.
+Example: getLastElement([1, 2]) should return 2.
+
+### Sorting arrays
+Write a function sort that takes an array filled with 3 numbers and returns these 3 numbers sorted in ascending order as an array.
+Example: sort([2, 3, 1]) should return [1, 2, 3].
+
+### Array: shift() and push()
+Write a function rotate that rotates the elements of an array. All elements should be moved one position to the left. 
+The 0th element should be placed at the end of the array. The rotated array should be returned.
+Example: rotate(['a', 'b', 'c']) should return ['b', 'c', 'a'].
+
+### Array:index()
+Write a function add that adds an element to the end of an array. 
+However, the element should only be added if it is not already in the array.
+Example: add([1, 2], 3) should return [1, 2, 3] and add([1, 2], 2) should return [1, 2].
+
+### Array: concat()
+Write a function concatUp that concatenate two arrays. The longer array should be appended to the shorter array. 
+If both arrays are equally long, the second array should be appended to the first array.
+Example: concatUp([1, 2], [3]) should return [3, 1, 2] and concatUp([5, 7], [6, 8]) should return [5, 7, 6, 8].
+
+### Array: slice()
+Write a function halve that copies the first half of an array. 
+With an odd number of array elements, the middle element should belong to the first half.
+Example: halve([1, 2, 3, 4]) should return [1, 2].
+
+### Array: join()
+Write a function list that takes an array of words and returns a string by concatenating the words in the array, 
+separated by commas and - the last word - by an 'and'. An empty array should return an empty string.
+Example: list(['Huey', 'Dewey', 'Louie']) should return 'Huey, Dewey and Louie'.
+
+### Array of Arrays
+Write a function flat that flattens a two-dimensional array with 3 entries.
+Example: flat(loshu) should return [4, 9, 2, 3, 5, 7, 8, 1, 6]. Thereby loshu is the magic square from the example above.
+
+### Comments
+Write a function median that takes an array of ascending numbers and returns the median of that numbers.
+Example: median([1, 2, 10]) should return 2 and median([1, 2, 10, 100]) should return 6.

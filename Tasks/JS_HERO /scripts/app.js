@@ -92,10 +92,10 @@ function hypotenuse(a, b) {
 
 // min and max
 //My example
-function midrange(n1,n2,n3) {
-  return (Math.min(n1,n2,n3) + Math.max(n1,n2,n3)) / 2;
+function midrange(n1, n2, n3) {
+  return (Math.min(n1, n2, n3) + Math.max(n1, n2, n3)) / 2;
 }
-midrange(2,7,4);
+midrange(2, 7, 4);
 //Their solution
 function midrange(a, b, c) {
   let min = Math.min(a, b, c);
@@ -105,24 +105,24 @@ function midrange(a, b, c) {
 
 // Math.PI
 function area(n1) {
-  return Math.PI * (n1 * n1) ;
- }
- area(4)
+  return Math.PI * (n1 * n1);
+}
+area(4);
 
 // Rounding
 function round100(num) {
-  return Math.round(num/100)*100;
+  return Math.round(num / 100) * 100;
 }
 round100(1230);
 
 // Random numbers
 function dice() {
-  return Math.floor(Math.random() * (7 - 1)) + 1; 
-} 
-dice()
+  return Math.floor(Math.random() * (7 - 1)) + 1;
+}
+dice();
 
 function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min) ) + min;
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 // parseInt
@@ -131,8 +131,8 @@ function add(textnum) {
   const operatorPosition = textnum.indexOf('+');
   const num1 = textnum.substr(0, operatorPosition);
   const firstNum = parseInt(num1);
-  const num2 = textnum.substr(operatorPosition)  
-  const secondNum = parseInt(num2)
+  const num2 = textnum.substr(operatorPosition);
+  const secondNum = parseInt(num2);
   return firstNum + secondNum;
 }
 add('100+300');
@@ -151,7 +151,7 @@ function nand(value1, value2) {
   let values = value1 && value2;
   return !values;
 }
-nand(true, true)
+nand(true, true);
 
 // NOR
 function nor(v1, v2) {
@@ -167,14 +167,14 @@ function xor(val1, val2) {
 }
 // Disjunctive
 function xor(val1, val2) {
-  return !val1 && val2 || val1 && !val2;
+  return (!val1 && val2) || (val1 && !val2);
 }
 
 // Strict equality
 function equals(a, b) {
   return a === b;
 }
-equals(1,1);
+equals(1, 1);
 
 // Three identical values
 function equals(a, b, c) {
@@ -205,9 +205,9 @@ isThreeDigit(199);
 //My solution
 function equals(a, b) {
   if (a === b) {
-    return 'EQUAL'
+    return 'EQUAL';
   } else {
-    return 'UNEQUAL'
+    return 'UNEQUAL';
   }
 }
 //Their solution
@@ -229,20 +229,20 @@ function repdigit(n) {
   return 'No Repdigit!';
 }
 
-// if..else
+// if...else
 function addWithSurcharge(a, b) {
   let surcharge = 0;
   if (a <= 10) {
     surcharge += 1;
   } else {
-    surcharge += 2; 
+    surcharge += 2;
   }
 
   if (b <= 10) {
     surcharge += 1;
   } else {
-    surcharge += 2; 
-  } 
+    surcharge += 2;
+  }
   return a + b + surcharge;
 }
 
@@ -259,3 +259,176 @@ function addWithSurcharge(a, b) {
 //   })
 //   return total;
 // }
+
+// else if
+function addWithSurcharge(a, b) {
+  let surcharge = 0;
+  if (a <= 10) {
+    surcharge += 1;
+  } else if (a > 10 && a <= 20) {
+    surcharge += 2;
+  } else {
+    surcharge += 3;
+  }
+  if (b <= 10) {
+    surcharge += 1;
+  } else if (b > 10 && b <= 20) {
+    surcharge += 2;
+  } else {
+    surcharge += 3;
+  }
+  return a + b + surcharge;
+}
+// Advanced solution to task
+// const addWithSurcharge1 = (...numbers) => {
+//   let total = 0;
+//   numbers.forEach(num => {
+//     if(num <= 10) {
+//       total += 1 + num;
+//     } else if(num > 10 && num <= 20) {
+//       total += 2 + num;
+//     } else {
+//       total += 3 + num;
+//     }
+//   })
+//   return total;
+// }
+
+// console.log(addWithSurcharge1(1, 4, 70, 50, 14));
+
+//Arrays
+function toArray(a, b) {
+  return [a, b];
+}
+
+//Get array elements
+// Meh example, only array can be as an argument for this to work
+function getFirstElement(arr) {
+  return arr[0];
+}
+//Better way, more dynamic -> rest operator converts arguments into array
+const getFirstElement = (...elements) => elements[0];
+console.log(getFirstElement(1, 2));
+
+//Set array elements
+function setFirstElement(arr, a) {
+  arr[0] = a;
+  return arr;
+}
+
+//Arry: length
+function getLastElement(arr) {
+  const arrIndex = arr.length - 1;
+  return arr[arrIndex];
+}
+
+//Sorting arrays
+function sortArray(arr) {
+  arr.sort((a, b) => {
+    return a - b;
+  });
+  return arr;
+}
+
+//Array: shift() and push()
+function rotate(arr) {
+  const removeEl = arr.shift();
+  arr.push(removeEl);
+  return arr;
+}
+
+//Array: indexOf()
+function add(arr, a) {
+  if (arr.indexOf(a) === -1) {
+    arr.push(a);
+    return arr;
+  }
+  return arr;
+}
+
+//Array: concat()
+function concatUp(arr1, arr2) {
+  if (arr1.length <= arr2.length) {
+    return arr1.concat(arr2);
+  } else {
+    return arr2.concat(arr1);
+  }
+}
+
+//Array: slice()
+function halve(arr) {
+  const calcHalveLength = Math.round((arr.length - 1) / 2);
+  const oddLength = calcHalveLength + 1;
+  if (!(arr.length % 2)) {
+    return arr.slice(0, calcHalveLength);
+  } else {
+    return arr.slice(0, oddLength);
+  }
+}
+
+//Array: join()
+function list(arr) {
+  if (arr.length === 0) {
+    return '';
+  } else if (arr.length === 1) {
+    return arr[0];
+  }
+
+  const lastWordIndex = arr.length - 1;
+  const wordsComma = arr.slice(0, lastWordIndex);
+  const lastWord = arr[lastWordIndex];
+  return wordsComma.join(', ') + ' and ' + lastWord;
+}
+
+//Array of arrays
+//My example, but returns only strings
+// function flat(loshu) {
+//   let arr = [];
+//   for(let i = 0; i < loshu.length; i++) {
+//     if(loshu[i].length === 0) {
+//       break;
+//     }
+//     const array1 = loshu[i];
+//     const array2 = array1.join();
+//     arr.splice(i, 0, array2)
+//     }
+//     return arr;
+//   }
+//Using reduce()
+function flat(a1) {
+  const flatened = a1.reduce((flatenedArr, e) => {
+    flatenedArr = [...flatenedArr, ...e];
+    return flatenedArr;
+  }, []);
+  return flatened;
+}
+//Using flat()
+function flat(loshu) {
+  return loshu.flat();
+}
+//Using recursion and map for three-dimensional arrays
+const flatenRecursively = (arr) => {
+  const flatened = [];
+  arr.map((e) => {
+    if (Array.isArray(e)) {
+      flatened.push(...flatenRecursively(e));
+    } else {
+      flatened.push(e);
+    }
+  });
+  return flatened;
+};
+
+//Comments
+function median(arr) {
+  if(!(Array.isArray(arr))) {
+    throw "This isn't array";
+  }
+  const secondNumIn = Math.round((arr.length - 1) / 2);
+  const firstNumIn = secondNumIn - 1;
+  if (!(arr.length % 2)) {
+    return (arr[firstNumIn] + arr[secondNumIn]) / 2;
+  } else {
+    return arr[secondNumIn];
+  }
+}
