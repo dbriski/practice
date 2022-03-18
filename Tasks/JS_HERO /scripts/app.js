@@ -4,7 +4,7 @@ function length(name) {
 }
 length('bla');
 
-//String: toUpperCase()
+// String: toUpperCase()
 function toCase(input) {
   return input.toLowerCase() + '-' + input.toUpperCase();
 }
@@ -18,7 +18,7 @@ function shortcut(name1, name2) {
 }
 shortcut('Lala', 'Land');
 
-//String: trim()
+// String: trim()
 function firstChar(name) {
   let trim = name.trim();
   return trim.charAt(0);
@@ -47,7 +47,7 @@ function firstWord(name) {
 }
 firstWord('Dani je cool');
 
-//String: replace() - NOTE: chaining!
+// String: replace() - NOTE: chaining!
 function normalize(date) {
   return date.replace('-', '/').replace('-', '/');
 }
@@ -136,7 +136,7 @@ function add(textnum) {
   return firstNum + secondNum;
 }
 add('100+300');
-//Their solution
+// Their solution
 function add(s) {
   let summand1 = parseInt(s, 10);
   let indexPlus = s.indexOf('+');
@@ -161,7 +161,7 @@ function nor(v1, v2) {
 nor(false, false);
 
 // XOR - Exclusive or
-//Conjunctive
+// Conjunctive
 function xor(val1, val2) {
   return (val1 || val2) && (!val1 || !val2);
 }
@@ -202,7 +202,7 @@ function isThreeDigit(num) {
 isThreeDigit(199);
 
 // if
-//My solution
+// My solution
 function equals(a, b) {
   if (a === b) {
     return 'EQUAL';
@@ -210,7 +210,7 @@ function equals(a, b) {
     return 'UNEQUAL';
   }
 }
-//Their solution
+// Their solution
 function equals(a, b) {
   let result = 'UNEQUAL';
   if (a === b) {
@@ -296,33 +296,33 @@ function addWithSurcharge(a, b) {
 
 // console.log(addWithSurcharge1(1, 4, 70, 50, 14));
 
-//Arrays
+// Arrays
 function toArray(a, b) {
   return [a, b];
 }
 
-//Get array elements
+// Get array elements
 // Meh example, only array can be as an argument for this to work
 function getFirstElement(arr) {
   return arr[0];
 }
-//Better way, more dynamic -> rest operator converts arguments into array
+// Better way, more dynamic -> rest operator converts arguments into array
 const getFirstElement = (...elements) => elements[0];
 console.log(getFirstElement(1, 2));
 
-//Set array elements
+// Set array elements
 function setFirstElement(arr, a) {
   arr[0] = a;
   return arr;
 }
 
-//Arry: length
+// Arry: length
 function getLastElement(arr) {
   const arrIndex = arr.length - 1;
   return arr[arrIndex];
 }
 
-//Sorting arrays
+// Sorting arrays
 function sortArray(arr) {
   arr.sort((a, b) => {
     return a - b;
@@ -330,14 +330,14 @@ function sortArray(arr) {
   return arr;
 }
 
-//Array: shift() and push()
+// Array: shift() and push()
 function rotate(arr) {
   const removeEl = arr.shift();
   arr.push(removeEl);
   return arr;
 }
 
-//Array: indexOf()
+// Array: indexOf()
 function add(arr, a) {
   if (arr.indexOf(a) === -1) {
     arr.push(a);
@@ -346,7 +346,7 @@ function add(arr, a) {
   return arr;
 }
 
-//Array: concat()
+// Array: concat()
 function concatUp(arr1, arr2) {
   if (arr1.length <= arr2.length) {
     return arr1.concat(arr2);
@@ -355,7 +355,7 @@ function concatUp(arr1, arr2) {
   }
 }
 
-//Array: slice()
+// Array: slice()
 function halve(arr) {
   const calcHalveLength = Math.round((arr.length - 1) / 2);
   const oddLength = calcHalveLength + 1;
@@ -366,7 +366,7 @@ function halve(arr) {
   }
 }
 
-//Array: join()
+// Array: join()
 function list(arr) {
   if (arr.length === 0) {
     return '';
@@ -380,8 +380,8 @@ function list(arr) {
   return wordsComma.join(', ') + ' and ' + lastWord;
 }
 
-//Array of arrays
-//My example, but returns only strings
+// Array of arrays
+// My example, but returns only strings
 // function flat(loshu) {
 //   let arr = [];
 //   for(let i = 0; i < loshu.length; i++) {
@@ -394,7 +394,7 @@ function list(arr) {
 //     }
 //     return arr;
 //   }
-//Using reduce()
+// Using reduce()
 function flat(a1) {
   const flatened = a1.reduce((flatenedArr, e) => {
     flatenedArr = [...flatenedArr, ...e];
@@ -402,11 +402,11 @@ function flat(a1) {
   }, []);
   return flatened;
 }
-//Using flat()
+// Using flat()
 function flat(loshu) {
   return loshu.flat();
 }
-//Using recursion and map for three-dimensional arrays
+// Using recursion and map for three-dimensional arrays
 const flatenRecursively = (arr) => {
   const flatened = [];
   arr.map((e) => {
@@ -419,7 +419,7 @@ const flatenRecursively = (arr) => {
   return flatened;
 };
 
-//Comments
+// Comments
 function median(arr) {
   if(!(Array.isArray(arr))) {
     throw "This isn't array";
@@ -431,4 +431,44 @@ function median(arr) {
   } else {
     return arr[secondNumIn];
   }
+}
+
+// undefined
+function hello(name) {
+  if (!name) {  // or name === undefined but it's not for all falsey 
+    return 'Hello world!'
+  } else {
+    return 'Hello ' + name + '!';
+  }
+}
+
+// null
+function cutComment(name) {
+  const indexChar = name.lastIndexOf('/');
+  if (indexChar !== -1) {
+    return name.substr(indexChar + 1).trim();
+  } else {
+    return null;
+  }
+}
+
+// for loop
+function addTo(num) {
+  let sum = 0;
+  for(let i = 0; i <= num; i++){
+    sum += i;
+  }
+  return sum;
+}
+
+// Factorial
+function factorial(num) {
+  let number = 1;
+  if (num < 0) {
+    throw 'Please enter a positive number';
+  }
+  for (let i = 1; i <= num; i++){
+    number *= i;
+  }
+  return number;
 }

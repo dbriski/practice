@@ -211,3 +211,29 @@ Example: flat(loshu) should return [4, 9, 2, 3, 5, 7, 8, 1, 6]. Thereby loshu is
 ### Comments
 Write a function median that takes an array of ascending numbers and returns the median of that numbers.
 Example: median([1, 2, 10]) should return 2 and median([1, 2, 10, 100]) should return 6.
+
+### undefined
+Write a function hello having one parameter and returning 'Hello <parameter>!'. 
+If hello is called without an argument, 'Hello world!' should be returned.
+Example: hello('Nala') should return 'Hello Nala!'.
+
+### null
+Write a function cutComment that takes one line of JavaScript and returns a possible line comment trimmed. 
+If the line contains no line comment, null should be returned. 
+For simplicity, we assume that the code does not contain the comment characters within a string.
+Example: cutCommt('let foo; // bar') should return 'bar'.
+
+### null
+Write a function cutComment that takes one line of JavaScript and returns a possible line comment trimmed. 
+If the line contains no line comment, null should be returned. For simplicity,
+we assume that the code does not contain the comment characters within a string.
+Example: cutCommt('let foo; // bar') should return 'bar'.
+
+### for loop
+Write a function addTo that accepts a number as a parameter and adds all natural numbers smaller or equal than the parameter. 
+The result is to be returned.
+Example: addTo(3) should return 1+2+3 = 6.
+
+### Factorial
+Write a function factorial that calculates the factorial of a positive integer.
+Example: factorial(3) should return 6.
