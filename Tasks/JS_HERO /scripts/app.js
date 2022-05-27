@@ -322,13 +322,38 @@ function getLastElement(arr) {
   return arr[arrIndex];
 }
 
-// Sorting arrays
+// Sorting array with Sort method
 function sortArray(arr) {
   arr.sort((a, b) => {
     return a - b;
   });
   return arr;
 }
+// Sorting array with Algorithm
+const sortingHandler = (arr) => {
+  if (!arr.length) {
+    throw Error('Please enter some numbers in array!');
+  }
+
+  if (arr.length === 1) {
+    return arr;
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    let outerNum = arr[i];
+    for (let j = i + 1; j < arr.length; j++) {
+      let innerNum = arr[j];
+      if (outerNum > innerNum) {
+        arr[i] = innerNum;
+        arr[j] = outerNum;
+
+        outerNum = arr[i];
+        innerNum = arr[j];
+      }
+    }
+  }
+  return arr;
+};
 
 // Array: shift() and push()
 function rotate(arr) {
@@ -471,4 +496,13 @@ function factorial(num) {
     number *= i;
   }
   return number;
+}
+
+//Loops and Arrays
+function mean(numbers) {
+  let sum = 0;
+  for(const num of numbers) {
+    sum += num;
+  }
+  return sum/(numbers.length -1);
 }

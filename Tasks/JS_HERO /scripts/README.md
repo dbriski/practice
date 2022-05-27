@@ -237,3 +237,9 @@ Example: addTo(3) should return 1+2+3 = 6.
 ### Factorial
 Write a function factorial that calculates the factorial of a positive integer.
 Example: factorial(3) should return 6.
+
+### Loops and Arrays
+Write a function mean that accepts an array filled with numbers and returns the arithmetic mean of those numbers.
+Example: mean([1, 2, 3]) should return (1+2+3)/3 = 2.
+
+### 
